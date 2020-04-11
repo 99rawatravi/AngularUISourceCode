@@ -1,0 +1,59 @@
+<div class="container">  
+
+    <br><br>  
+        <form [formGroup]="cardForm"(ngSubmit)="onFormSubmit(cardForm.value)">  
+                <table>  
+                  <tr>  
+                    <td class="tbl1"> 
+                        <input formControlName="Id"  placeholder="Id">  
+                    </td>  
+                    <td class="tbl1">  
+                        <input formControlName="Name" placeholder="Name"> 
+
+                    </td> 
+                    <td class="tbl1"> 
+                        <input formControlName="Description"placeholder="Description"> 
+                    </td> 
+                    <td class="tbl1">  
+                        <input formControlName="Price"  placeholder="Price"> 
+                    </td> 
+                  </tr>  
+                  <tr>  
+                    <td></td>  
+                    <td  class="content-center">  
+                      <button type="submit" [disabled]="!cardForm.valid">Submit</button>      
+                      <button type="reset"(click)="resetForm()">Reset</button>  
+                    </td>  
+                    <td>  
+                      <p *ngIf="dataSaved" style="color:rgb(0, 128, 0);font-size:20px;font-weight:bold" Class="success" align="left">  
+                        {{massage}}  
+                      </p>  
+                    </td>  
+                  </tr>  
+                </table>  
+    <br><br>  
+          <table class="table" >  
+              <tr ngclass="btn-primary">  
+                <th class="tbl2">Card Id</th>  
+                <th class="tbl2">Card Name</th>  
+                <th class="tbl2">Description</th>  
+                <th class="tbl2">Price</th>
+                <th class="tbl2">Edit</th>  
+                <th class="tbl2">Delete</th>  
+              </tr>  
+              <tr *ngFor="let card of allcards | async">  
+                <td class="tbl2">{{card.Id}}</td>  
+                <td class="tbl2">{{card.CardName}}</td>  
+                <td class="tbl2">{{card.Description}}</td>  
+                <td class="tbl2">{{card.Price}}</td> 
+                <td class="tbl2">  
+                  <button type="button" class="btn btn-info"(click)="loadCardToEdit(card.Id)">Edit</button>  
+                </td>  
+                <td class="tbl2">  
+                  <button type="button" class="btn btn-danger"(click)="deleteCard(card.Id)">Delete</button>  
+                </td>  
+              </tr>  
+      
+            </table>  
+        </form>  
+    </div>  
